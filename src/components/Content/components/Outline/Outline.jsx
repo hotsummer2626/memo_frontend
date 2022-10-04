@@ -11,7 +11,7 @@ const Outline = (props) => {
       <div className={styles.header}>
         <h2>
           Welcome &nbsp;
-          <span>{auth.user.username}!!!</span>
+          <span>{auth.user.username}&nbsp;!!!</span>
         </h2>
         <div className={styles.logout} onClick={() => dispatch(logout())}>
           Log out

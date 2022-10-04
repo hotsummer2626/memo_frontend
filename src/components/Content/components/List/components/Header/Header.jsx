@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Header.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import Transition from '../../../../../TransitionContainers/Transition/Transition';
+import Transition from "../../../../../TransitionContainers/Transition/Transition";
 
 const selectOptions = ["All", "Readed", "Unread"];
 
@@ -31,7 +31,8 @@ const Header = ({ selectValue, setSelectValue }) => {
             {selectOptions.map((value) => (
               <span
                 key={value}
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setSelectValue(value);
                   setIsDropdownShow(false);
                 }}
