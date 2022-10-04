@@ -1,0 +1,4 @@
+@import "/src//mixins/transition.scss";
+
+@include fade;
+@include right_in_right_out_fade;

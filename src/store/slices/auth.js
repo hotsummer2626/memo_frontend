@@ -15,7 +15,7 @@ export const authSlice = createSlice({
     return {
       isLogged: true,
       token,
-      user: localStorage.getItem("user"),
+      user: JSON.parse(localStorage.getItem("user")),
       expireTime: +localStorage.getItem("expireTime"),
     };
   },

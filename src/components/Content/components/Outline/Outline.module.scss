@@ -1,0 +1,20 @@
+.container {
+  width: 600px;
+  border-radius: 20px;
+  background: #394052;
+  color: #fff;
+  padding: 20px;
+  .header {
+    position: relative;
+    margin-bottom: 20px;
+    h2 {
+      text-align: center;
+    }
+    .logout {
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
+  }
+}
