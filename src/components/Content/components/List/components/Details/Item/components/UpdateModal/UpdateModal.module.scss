@@ -1,0 +1,31 @@
+form {
+  .bookName {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    label {
+      align-self: center;
+    }
+    input {
+      background: #202937;
+      height: 40px;
+      border-radius: 10px;
+      padding: 10px;
+      color: #fff;
+      font-size: 15px;
+    }
+  }
+  .bookStatus {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    height: 60px;
+    div {
+      align-self: center;
+    }
+    input {
+      margin-right: 5px;
+    }
+    label {
+      margin-right: 10px;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.container {
+  width: 400px;
+  border-radius: 20px;
+  background: #394052;
+  padding: 10px 15px 15px;
+  color: #fff;
+  .close {
+    font-size: 25px;
+    text-align: right;
+    margin-bottom: 10px;
+    .icon {
+      cursor: pointer;
+    }
+  }
+  .buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    button {
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      background: #202937;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}

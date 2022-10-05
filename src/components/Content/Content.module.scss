@@ -18,3 +18,11 @@
     cursor: pointer;
   }
 }
+
+@media (max-width:576px) {
+  .addInput{
+    .button{
+      font-size: 15px;
+    }
+  }
+}

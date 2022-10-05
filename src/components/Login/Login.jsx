@@ -4,6 +4,7 @@ import { useRegisterMutation, useLoginMutation } from "../../store/apis/auth";
 import { login } from "../../store/slices/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Transition from "../TransitionContainers/Transition/Transition";
 
 const Login = () => {
   const [activeInput, setActiveInput] = useState({
@@ -64,55 +65,57 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h2>{isLoginForm ? "Login" : "Sign Up"}</h2>
-      <form onSubmit={onSubmitHandler}>
-        <label
-          htmlFor="username"
-          className={activeInput.username ? styles.active : ""}
-        >
-          Username
-        </label>
-        <input
-          type="text"
-          id="username"
-          onFocus={onFocusHandler("username")}
-          onBlur={onBlurHandler("username")}
-          onChange={onChangeHandler("username")}
-          value={formData.username}
-          className={activeInput.username ? styles.active : ""}
-        />
-        <label
-          htmlFor="password"
-          className={activeInput.password ? styles.active : ""}
-        >
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          onFocus={onFocusHandler("password")}
-          onBlur={onBlurHandler("password")}
-          onChange={onChangeHandler("password")}
-          value={formData.password}
-          className={activeInput.password ? styles.active : ""}
-        />
-        {errorMsg && <div className={styles.errorMsg}>{errorMsg}</div>}
-        <button>{isLoginForm ? "Login" : "Sign Up"}</button>
-      </form>
-      <div className={styles.reminder}>
-        <span>{isLoginForm ? "Not a member?" : "Already have account?"}</span>
-        &nbsp;
-        <span
-          onClick={() => {
-            resetForm();
-            setIsLoginForm(!isLoginForm);
-          }}
-        >
-          {isLoginForm ? "Signup" : "Login"}
-        </span>
+    <Transition defaultShow={true} className="scaleFade">
+      <div className={styles.container}>
+        <h2>{isLoginForm ? "Login" : "Sign Up"}</h2>
+        <form onSubmit={onSubmitHandler}>
+          <label
+            htmlFor="username"
+            className={activeInput.username ? styles.active : ""}
+          >
+            Username
+          </label>
+          <input
+            type="text"
+            id="username"
+            onFocus={onFocusHandler("username")}
+            onBlur={onBlurHandler("username")}
+            onChange={onChangeHandler("username")}
+            value={formData.username}
+            className={activeInput.username ? styles.active : ""}
+          />
+          <label
+            htmlFor="password"
+            className={activeInput.password ? styles.active : ""}
+          >
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            onFocus={onFocusHandler("password")}
+            onBlur={onBlurHandler("password")}
+            onChange={onChangeHandler("password")}
+            value={formData.password}
+            className={activeInput.password ? styles.active : ""}
+          />
+          {errorMsg && <div className={styles.errorMsg}>{errorMsg}</div>}
+          <button>{isLoginForm ? "Login" : "Sign Up"}</button>
+        </form>
+        <div className={styles.reminder}>
+          <span>{isLoginForm ? "Not a member?" : "Already have account?"}</span>
+          &nbsp;
+          <span
+            onClick={() => {
+              resetForm();
+              setIsLoginForm(!isLoginForm);
+            }}
+          >
+            {isLoginForm ? "Signup" : "Login"}
+          </span>
+        </div>
       </div>
-    </div>
+    </Transition>
   );
 };
 

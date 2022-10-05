@@ -9,6 +9,13 @@ export const bookSlice = createSlice({
     setAllBooks(state, action) {
       state.bookList = action.payload;
     },
+    updateBook(state, action) {
+      const bookIndex = state.bookList.findIndex(
+        (book) => book._id === action.payload.bookId
+      );
+      state.bookList[bookIndex].name = action.payload.bookName;
+      state.bookList[bookIndex].isReaded = action.payload.isReaded;
+    },
     deleteBook(state, action) {
       state.bookList = state.bookList.filter(
         (book) => book._id !== action.payload.id
@@ -17,4 +24,4 @@ export const bookSlice = createSlice({
   },
 });
 
-export const { setAllBooks, deleteBook } = bookSlice.actions;
+export const { setAllBooks, updateBook, deleteBook } = bookSlice.actions;

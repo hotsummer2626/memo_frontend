@@ -1,31 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Item.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteBook } from "../../../../../../../store/slices/book";
-import { useDeleteBookFromUserMutation } from "../../../../../../../store/apis/user";
-import UpdateConfirmModel from "./components/UpdateConfirmModel/UpdateConfirmModel";
+import UpdateModel from "./components/UpdateModal/UpdateModal";
+import DeleteModal from "./components/DeleteModal/DeleteModal";
+import Transition from "../../../../../../TransitionContainers/Transition/Transition";
 
 const Item = ({ book }) => {
-  const { auth } = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const [asyncDeleteBook, {}] = useDeleteBookFromUserMutation();
+  const [isUpdateModalShow, setIsUpdateModalShow] = useState(false);
+  const [isDeleteModalShow, setIsDeleteModalShow] = useState(false);
 
-  const deleteBookHandler = () => {
-    dispatch(deleteBook({ id: book._id }));
-    asyncDeleteBook({ userId: auth.user.id, bookId: book._id });
-  };
   return (
     <div className={styles.container}>
       <div className={styles.name}>{book.name}</div>
       <div className={styles.edit}>
-        <FontAwesomeIcon icon={faPenToSquare} />
+        <FontAwesomeIcon
+          icon={faPenToSquare}
+          onClick={() => setIsUpdateModalShow(true)}
+        />
       </div>
-      <div className={styles.delete} onClick={deleteBookHandler}>
-        <FontAwesomeIcon icon={faTrashCan} />
+      <div className={styles.delete}>
+        <FontAwesomeIcon
+          icon={faTrashCan}
+          onClick={() => setIsDeleteModalShow(true)}
+        />
       </div>
-      <UpdateConfirmModel />
+      <Transition isShow={isUpdateModalShow} className="fade">
+        <UpdateModel book={book} setIsUpdateModalShow={setIsUpdateModalShow} />
+      </Transition>
+      <Transition isShow={isDeleteModalShow} className="fade">
+        <DeleteModal book={book} setIsDeleteModalShow={setIsDeleteModalShow} />
+      </Transition>
     </div>
   );
 };

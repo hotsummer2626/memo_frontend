@@ -26,11 +26,20 @@ export const userApi = createApi({
           return `users/${id}/books`;
         },
       }),
+      updateBookFromUser: build.mutation({
+        query({ userId, bookId, book }) {
+          return {
+            url: `users/${userId}/books/${bookId}`,
+            method: "put",
+            body: book,
+          };
+        },
+      }),
       deleteBookFromUser: build.mutation({
         query({ userId, bookId }) {
           return {
             url: `users/${userId}/books/${bookId}`,
-            method: "put",
+            method: "delete",
           };
         },
       }),
@@ -41,5 +50,6 @@ export const userApi = createApi({
 export const {
   useAddBookToUserMutation,
   useGetBooksByUserIdQuery,
+  useUpdateBookFromUserMutation,
   useDeleteBookFromUserMutation,
 } = userApi;
