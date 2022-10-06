@@ -49,6 +49,7 @@ const UpdateModel = ({ book, setIsUpdateModalShow }) => {
   };
   return (
     <ModalOutline
+      title="UPDATE BOOK"
       closeModal={() => setIsUpdateModalShow(false)}
       onConfirm={updateHandler}
     >

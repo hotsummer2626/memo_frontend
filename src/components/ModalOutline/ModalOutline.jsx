@@ -5,7 +5,7 @@ import Transition from "../TransitionContainers/Transition/Transition";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const ModalOutline = ({ children, closeModal, onConfirm }) => {
+const ModalOutline = ({ children, closeModal, onConfirm, title }) => {
   const [isContentShow, setIsContentShow] = useState(false);
 
   const confirmHandler = (e) => {
@@ -30,14 +30,16 @@ const ModalOutline = ({ children, closeModal, onConfirm }) => {
       >
         <div className={styles.container}>
           <div className={styles.close}>
-            <FontAwesomeIcon
-              icon={faXmark}
-              className={styles.icon}
-              onClick={() => {
-                setIsContentShow(false);
-                closeModal();
-              }}
-            />
+            <div className={styles.title}>{title}</div>
+            <div className={styles.icon}>
+              <FontAwesomeIcon
+                icon={faXmark}
+                onClick={() => {
+                  setIsContentShow(false);
+                  closeModal();
+                }}
+              />
+            </div>
           </div>
           {children}
           <div className={styles.buttonGroup}>

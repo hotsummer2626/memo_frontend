@@ -15,6 +15,7 @@ const DeleteModal = ({ book, setIsDeleteModalShow }) => {
   };
   return (
     <ModalOutline
+      title="DELETE BOOK"
       closeModal={() => setIsDeleteModalShow(false)}
       onConfirm={deleteHandler}
     >

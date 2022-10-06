@@ -38,6 +38,7 @@ const AddBookModal = ({ setIsAddBookModalShow }) => {
   };
   return (
     <ModalOutline
+      title="ADD NEW BOOK"
       closeModal={() => setIsAddBookModalShow(false)}
       onConfirm={addBookHandler}
     >
