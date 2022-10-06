@@ -1,0 +1,39 @@
+.listFilterForm {
+  .wordCount {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    height: 40px;
+    margin-bottom: 10px;
+    div {
+      align-self: center;
+      display: flex;
+      input {
+        margin-right: 5px;
+      }
+      label {
+        font-size: 18px;
+        margin-right: 10px;
+      }
+    }
+  }
+  .isReaded {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    margin-bottom: 10px;
+    label {
+      align-self: center;
+    }
+    input {
+      width: max-content;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .listFilterForm {
+    .wordCount,
+    .isReaded {
+      grid-template-columns: 2fr 3.5fr;
+    }
+  }
+}
