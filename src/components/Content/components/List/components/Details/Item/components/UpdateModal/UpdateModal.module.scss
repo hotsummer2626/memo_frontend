@@ -1,4 +1,4 @@
-form {
+.updateBookForm {
   .bookName,
   .author,
   .wordCount {
@@ -38,12 +38,12 @@ form {
 }
 
 @media (max-width: 576px) {
-  .container {
+  .updateBookForm {
     .bookName,
     .bookStatus,
     .author,
     .wordCount {
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: 2fr 3.5fr;
     }
   }
 }

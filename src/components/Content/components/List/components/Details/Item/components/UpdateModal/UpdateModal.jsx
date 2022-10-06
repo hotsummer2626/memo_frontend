@@ -53,7 +53,7 @@ const UpdateModel = ({ book, setIsUpdateModalShow }) => {
       closeModal={() => setIsUpdateModalShow(false)}
       onConfirm={updateHandler}
     >
-      <form>
+      <form className={styles.updateBookForm}>
         <div className={styles.bookName}>
           <label htmlFor="bookName">Book name:</label>
           <input
