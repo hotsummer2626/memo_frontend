@@ -36,6 +36,13 @@ const List = () => {
   return (
     <div className={styles.container}>
       <Header selectValue={selectValue} setSelectValue={setSelectValue} />
+      <div className={styles.columeName}>
+        <div>Name</div>
+        <div className={styles.author}>Author</div>
+        <div className={styles.wordCount}>WordCount</div>
+        <div className={styles.update}>Update</div>
+        <div className={styles.delete}>Delete</div>
+      </div>
       <Details displayBookList={displayBookList} />
     </div>
   );

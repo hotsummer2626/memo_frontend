@@ -1,7 +1,10 @@
 form {
-  .bookName {
+  .bookName,
+  .author,
+  .wordCount {
     display: grid;
     grid-template-columns: 1fr 2.5fr;
+    margin-bottom: 10px;
     label {
       align-self: center;
     }
@@ -14,18 +17,33 @@ form {
       font-size: 15px;
     }
   }
+  .wordCount{
+    margin-bottom: 0;
+  }
   .bookStatus {
     display: grid;
     grid-template-columns: 1fr 2.5fr;
     height: 60px;
     div {
       align-self: center;
+      display: flex;
+      input {
+        margin-right: 5px;
+      }
+      label {
+        margin-right: 10px;
+      }
     }
-    input {
-      margin-right: 5px;
-    }
-    label {
-      margin-right: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    .bookName,
+    .bookStatus,
+    .author,
+    .wordCount {
+      grid-template-columns: 1fr 2fr;
     }
   }
 }

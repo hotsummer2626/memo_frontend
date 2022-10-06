@@ -3,12 +3,14 @@ import styles from "./UpdateModal.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { updateBook } from "../../../../../../../../../store/slices/book";
 import { useUpdateBookFromUserMutation } from "../../../../../../../../../store/apis/user";
-import ModalOutline from "../ModalOutline/ModalOutline";
+import ModalOutline from "../../../../../../../../ModalOutline/ModalOutline";
 
 const UpdateModel = ({ book, setIsUpdateModalShow }) => {
   const [formData, setFormData] = useState({
     bookName: book.name,
     bookStatus: book.isReaded,
+    author: book.author,
+    wordCount: book.wordCount,
   });
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state);
@@ -17,6 +19,7 @@ const UpdateModel = ({ book, setIsUpdateModalShow }) => {
   const inputChangeHandler = (inputName) => (e) => {
     let value = e.target.value;
     if (inputName === "bookStatus") value = value === "true" ? true : false;
+    if (inputName === "wordCount") value = value.replace(/[^\d]/g, "") * 1;
     setFormData({
       ...formData,
       [inputName]: value,
@@ -29,12 +32,19 @@ const UpdateModel = ({ book, setIsUpdateModalShow }) => {
         bookId: book._id,
         bookName: formData.bookName,
         isReaded: formData.bookStatus,
+        author: formData.author,
+        wordCount: formData.wordCount,
       })
     );
     asyncUpdateBook({
       userId: auth.user.id,
       bookId: book._id,
-      book: { bookName: formData.bookName, isReaded: formData.bookStatus },
+      book: {
+        bookName: formData.bookName,
+        isReaded: formData.bookStatus,
+        author: formData.author,
+        wordCount: formData.wordCount,
+      },
     });
   };
   return (
@@ -50,6 +60,24 @@ const UpdateModel = ({ book, setIsUpdateModalShow }) => {
             id="bookName"
             value={formData.bookName}
             onChange={inputChangeHandler("bookName")}
+          />
+        </div>
+        <div className={styles.author}>
+          <label htmlFor="author">Author:</label>
+          <input
+            type="text"
+            id="author"
+            value={formData.author}
+            onChange={inputChangeHandler("author")}
+          />
+        </div>
+        <div className={styles.wordCount}>
+          <label htmlFor="wordCount">Word count:</label>
+          <input
+            type="text"
+            id="wordCount"
+            value={formData.wordCount}
+            onChange={inputChangeHandler("wordCount")}
           />
         </div>
         <div className={styles.bookStatus}>

@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
+// const baseUrl="http://localhost:3001/api/";
+const baseUrl = "https://sunny-memo-cms.herokuapp.com/api/";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3001/api/",
+    baseUrl,
   }),
   endpoints(build) {
     return {

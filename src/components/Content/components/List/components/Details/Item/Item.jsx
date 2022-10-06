@@ -13,6 +13,8 @@ const Item = ({ book }) => {
   return (
     <div className={styles.container}>
       <div className={styles.name}>{book.name}</div>
+      <div className={styles.author}>{book.author}</div>
+      <div className={styles.wordCount}>{book.wordCount}</div>
       <div className={styles.edit}>
         <FontAwesomeIcon
           icon={faPenToSquare}

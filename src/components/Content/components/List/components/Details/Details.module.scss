@@ -1,6 +1,13 @@
 .container {
   height: 350px;
   overflow: overlay;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #bfbfbf;
+    border-radius: 10px;
+  }
   .wrapper {
     display: grid;
     gap: 5px;

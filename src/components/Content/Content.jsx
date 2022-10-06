@@ -5,6 +5,7 @@ import Outline from "./components/Outline/Outline";
 import List from "./components/List/List";
 import { useAddBookToUserMutation } from "../../store/apis/user";
 import { setAllBooks } from "../../store/slices/book";
+import AddBook from "./components/AddBook/AddBook";
 
 const Content = () => {
   const [inputText, setInputText] = useState("");
@@ -23,7 +24,7 @@ const Content = () => {
   };
   return (
     <Outline>
-      <div className={styles.addInput}>
+      {/* <div className={styles.addInput}>
         <input
           type="text"
           placeholder="Please input the book name"
@@ -33,7 +34,8 @@ const Content = () => {
         <div className={styles.button} onClick={addBookHandler}>
           Add
         </div>
-      </div>
+      </div> */}
+      <AddBook />
       <List />
     </Outline>
   );

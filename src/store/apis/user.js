@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
+// const baseUrl="http://localhost:3001/api/";
+const baseUrl = "https://sunny-memo-cms.herokuapp.com/api/";
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3001/api/",
+    baseUrl,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       if (token) headers.set("authorization", `Bearer ${token}`);
@@ -13,11 +15,11 @@ export const userApi = createApi({
   endpoints(build) {
     return {
       addBookToUser: build.mutation({
-        query({ userId, bookName }) {
+        query({ userId, bookName, author,wordCount }) {
           return {
             url: `users/${userId}`,
             method: "post",
-            body: { bookName },
+            body: { bookName, author, wordCount },
           };
         },
       }),

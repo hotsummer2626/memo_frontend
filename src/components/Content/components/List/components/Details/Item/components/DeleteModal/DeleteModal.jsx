@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./DeleteModal.module.scss";
-import ModalOutline from "../ModalOutline/ModalOutline";
+import ModalOutline from "../../../../../../../../ModalOutline/ModalOutline";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteBook } from "../../../../../../../../../store/slices/book";
 import { useDeleteBookFromUserMutation } from "../../../../../../../../../store/apis/user";

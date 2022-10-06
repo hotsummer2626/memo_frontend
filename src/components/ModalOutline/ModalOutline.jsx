@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./ModalOutline.module.scss";
-import Backdrop from "../../../../../../../../Backdrop/Backdrop";
-import Transition from "../../../../../../../../TransitionContainers/Transition/Transition";
+import Backdrop from "../Backdrop/Backdrop";
+import Transition from "../TransitionContainers/Transition/Transition";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
