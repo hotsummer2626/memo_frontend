@@ -9,9 +9,10 @@ const DeleteModal = ({ book, setIsDeleteModalShow }) => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [asyncDeleteBook] = useDeleteBookFromUserMutation();
-  const deleteHandler = () => {
+  const deleteHandler = (closeModal) => {
     dispatch(deleteBook({ id: book._id }));
     asyncDeleteBook({ userId: auth.user.id, bookId: book._id });
+    closeModal();
   };
   return (
     <ModalOutline

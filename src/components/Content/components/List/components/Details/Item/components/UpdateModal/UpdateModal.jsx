@@ -26,7 +26,11 @@ const UpdateModel = ({ book, setIsUpdateModalShow }) => {
     });
   };
 
-  const updateHandler = () => {
+  const updateHandler = (closeModal) => {
+    if (formData.bookName === "" || formData.author === "") {
+      alert("Book name or author cannot be blank");
+      return;
+    }
     dispatch(
       updateBook({
         bookId: book._id,
@@ -46,6 +50,7 @@ const UpdateModel = ({ book, setIsUpdateModalShow }) => {
         wordCount: formData.wordCount,
       },
     });
+    closeModal();
   };
   return (
     <ModalOutline

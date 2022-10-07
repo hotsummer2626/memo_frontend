@@ -6,6 +6,9 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { useSelector, useDispatch } from "react-redux";
 import { useGetBooksByUserIdQuery } from "../../../../../../store/apis/user";
 import { setAllBooks } from "../../../../../../store/slices/book";
+import Transition from "../../../../../TransitionContainers/Transition/Transition";
+import Loading from "../../../../../Loading/Loading";
+import { logout } from "../../../../../../store/slices/auth";
 
 const Details = () => {
   const [displayBookList, setDisplayBookList] = useState(null);
@@ -15,7 +18,18 @@ const Details = () => {
     bookFilter,
   } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const { data: books } = useGetBooksByUserIdQuery(auth.user.id);
+  const {
+    data: books,
+    isLoading,
+    isError,
+  } = useGetBooksByUserIdQuery(auth.user.id);
+
+  useEffect(() => {
+    if (isError) {
+      dispatch(setAllBooks(null));
+      dispatch(logout());
+    }
+  }, [isError]);
 
   useEffect(() => {
     if (books) {
@@ -26,7 +40,10 @@ const Details = () => {
   useEffect(() => {
     if (bookList) {
       let newBookList = bookList.filter(
-        (book) => book.isReaded === bookFilter.isReaded
+        (book) =>
+          book.isReaded === bookFilter.isReaded &&
+          book.name.indexOf(bookFilter.bookName) !== -1 &&
+          book.author.indexOf(bookFilter.author) !== -1
       );
       if (bookFilter.wordCount) {
         const wordCountActions = {
@@ -54,6 +71,9 @@ const Details = () => {
             ))}
         </TransitionGroup>
       </div>
+      <Transition isShow={isLoading}>
+        <Loading />
+      </Transition>
     </div>
   );
 };

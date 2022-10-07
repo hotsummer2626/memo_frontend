@@ -28,8 +28,9 @@ const ListFilterModal = ({ setIsListFilterModalShow }) => {
       [inputName]: value,
     });
   };
-  const setBookFilterHandler = () => {
+  const setBookFilterHandler = (closeModal) => {
     dispatch(setBookFilter(formData));
+    closeModal();
   };
   return (
     <ModalOutline

@@ -4,6 +4,8 @@ import ModalOutline from "../../../../ModalOutline/ModalOutline";
 import { useSelector, useDispatch } from "react-redux";
 import { useAddBookToUserMutation } from "../../../../../store/apis/user";
 import { setAllBooks } from "../../../../../store/slices/book";
+import Loading from "../../../../Loading/Loading";
+import Transition from "../../../../TransitionContainers/Transition/Transition";
 
 const AddBookModal = ({ setIsAddBookModalShow }) => {
   const [formData, setFormData] = useState({
@@ -13,7 +15,7 @@ const AddBookModal = ({ setIsAddBookModalShow }) => {
   });
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [addBook] = useAddBookToUserMutation();
+  const [addBook, { isLoading }] = useAddBookToUserMutation();
   const inputChangeHandler = (inputName) => (e) => {
     let value = e.target.value;
     if (inputName === "wordCount") value = value.replace(/[^\d]/g, "") * 1;
@@ -22,7 +24,11 @@ const AddBookModal = ({ setIsAddBookModalShow }) => {
       [inputName]: value,
     });
   };
-  const addBookHandler = () => {
+  const addBookHandler = (closeModal) => {
+    if (formData.bookName === "" || formData.author === "") {
+      alert("Book name or author cannot be blank");
+      return;
+    }
     addBook({
       userId: auth.user.id,
       bookName: formData.bookName,
@@ -31,6 +37,7 @@ const AddBookModal = ({ setIsAddBookModalShow }) => {
     }).then((res) => {
       if (!res.data.error) {
         dispatch(setAllBooks(res.data));
+        closeModal();
         return;
       }
       alert(res.data.error);
@@ -71,6 +78,9 @@ const AddBookModal = ({ setIsAddBookModalShow }) => {
           />
         </div>
       </form>
+      <Transition isShow={isLoading}>
+        <Loading />
+      </Transition>
     </ModalOutline>
   );
 };

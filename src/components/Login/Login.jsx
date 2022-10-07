@@ -5,6 +5,7 @@ import { login } from "../../store/slices/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Transition from "../TransitionContainers/Transition/Transition";
+import Loading from "../Loading";
 
 const Login = () => {
   const [activeInput, setActiveInput] = useState({
@@ -114,6 +115,9 @@ const Login = () => {
             {isLoginForm ? "Signup" : "Login"}
           </span>
         </div>
+        <Transition isShow={regLoading || loginLoading}>
+          <Loading />
+        </Transition>
       </div>
     </Transition>
   );

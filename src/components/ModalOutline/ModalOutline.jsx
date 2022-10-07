@@ -8,17 +8,19 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 const ModalOutline = ({ children, closeModal, onConfirm, title }) => {
   const [isContentShow, setIsContentShow] = useState(false);
 
-  const confirmHandler = (e) => {
-    e.preventDefault();
-    onConfirm();
+  const closeModalHandler = () => {
     setIsContentShow(false);
     closeModal();
   };
 
+  const confirmHandler = (e) => {
+    e.preventDefault();
+    onConfirm(closeModalHandler);
+  };
+
   const cancelHandler = (e) => {
     e.preventDefault();
-    setIsContentShow(false);
-    closeModal();
+    closeModalHandler();
   };
   return (
     <Backdrop>
@@ -32,13 +34,7 @@ const ModalOutline = ({ children, closeModal, onConfirm, title }) => {
           <div className={styles.close}>
             <div className={styles.title}>{title}</div>
             <div className={styles.icon}>
-              <FontAwesomeIcon
-                icon={faXmark}
-                onClick={() => {
-                  setIsContentShow(false);
-                  closeModal();
-                }}
-              />
+              <FontAwesomeIcon icon={faXmark} onClick={closeModalHandler} />
             </div>
           </div>
           {children}
