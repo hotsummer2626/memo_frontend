@@ -16,6 +16,7 @@
       height: 100px;
     }
     div {
+      position: relative;
       display: grid;
       grid-template-columns: 1fr 4.5fr;
       margin-bottom: 10px;
@@ -29,6 +30,13 @@
         padding: 10px;
         color: #fff;
         font-size: 15px;
+      }
+      .emptyInput{
+        position: absolute;
+        grid-template-columns: initial;
+        top: 12px;
+        right: 10px;
+        cursor: pointer;
       }
     }
   }

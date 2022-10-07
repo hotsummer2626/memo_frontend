@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styles from "./SearchBook.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faCircleXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchBookFilter } from "../../../../store/slices/bookFilter";
 
@@ -39,6 +42,23 @@ const SearchBook = () => {
               )
             }
           />
+          {bookFilter.bookName !== "" ? (
+            <div
+              className={styles.emptyInput}
+              onClick={() =>
+                dispatch(
+                  setSearchBookFilter({
+                    inputName: "bookName",
+                    value: "",
+                  })
+                )
+              }
+            >
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div>
           <label htmlFor="author">Author:</label>
@@ -56,6 +76,23 @@ const SearchBook = () => {
               )
             }
           />
+          {bookFilter.author !== "" ? (
+            <div
+              className={styles.emptyInput}
+              onClick={() =>
+                dispatch(
+                  setSearchBookFilter({
+                    inputName: "author",
+                    value: "",
+                  })
+                )
+              }
+            >
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </form>
     </div>
