@@ -1,3 +1,5 @@
+@import "/src/mixins/transition.scss";
+
 .container {
   .scrollContainer {
     position: relative;
@@ -9,6 +11,13 @@
     &::-webkit-scrollbar-thumb {
       background: #bfbfbf;
       border-radius: 10px;
+    }
+    .empty {
+      position: absolute;
+      width: 100%;
+      padding-top: 50px;
+      font-size: 25px;
+      text-align: center;
     }
     .wrapper {
       display: grid;
@@ -36,4 +45,16 @@
   opacity: 0;
   transform: translateX(100%);
   transition: 300ms ease-in-out;
+}
+
+@include scale_fade;
+
+@media (max-width: 576px) {
+  .container {
+    .scrollContainer {
+      .empty {
+        font-size: 18px;
+      }
+    }
+  }
 }

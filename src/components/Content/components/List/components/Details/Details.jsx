@@ -64,9 +64,28 @@ const Details = () => {
       <div className={styles.scrollContainer}>
         <TransitionGroup className={styles.wrapper}>
           {displayBookList &&
-            displayBookList.map((book) => (
-              <CSSTransition key={book._id} timeout={300} classNames={styles}>
-                <Item book={book} />
+            (displayBookList.length !== 0 ? (
+              displayBookList.map((book) => (
+                <CSSTransition key={book._id} timeout={300} classNames={styles}>
+                  <Item book={book} />
+                </CSSTransition>
+              ))
+            ) : (
+              <CSSTransition
+                key="empty"
+                timeout={200}
+                classNames={{
+                  enter: styles.scaleFadeEnter,
+                  enterActive: styles.scaleFadeEnterActive,
+                  enterDone: styles.scaleFadeEnterDone,
+                  exit: styles.scaleFadeExit,
+                  exitActive: styles.scaleFadeExitActive,
+                  exitDone: styles.scaleFadeExitDone,
+                }}
+              >
+                <div className={styles.empty}>
+                  Oops, nothing has been founded !!!
+                </div>
               </CSSTransition>
             ))}
         </TransitionGroup>
